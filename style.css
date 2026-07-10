@@ -136,13 +136,34 @@ img[src=""] {
 
 .navbar__toggle {
     display: none;
+    position: relative;
+    isolation: isolate;
     width: 44px;
     height: 44px;
     padding: 10px;
-    border: 1px solid var(--line-strong);
+    border: 1px solid rgba(168, 85, 247, 0.42);
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.04);
+    background: linear-gradient(145deg, rgba(124, 58, 237, 0.28), rgba(255, 255, 255, 0.05));
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.2), inset 0 1px rgba(255, 255, 255, 0.12);
     cursor: pointer;
+    transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease), background var(--ease);
+}
+
+.navbar__toggle::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    z-index: -1;
+    border-radius: 10px;
+    background: radial-gradient(circle at 50% 0, rgba(255, 255, 255, 0.18), transparent 65%);
+}
+
+.navbar__toggle:hover,
+.navbar__toggle.is-open {
+    transform: translateY(-2px);
+    border-color: rgba(196, 181, 253, 0.8);
+    background: linear-gradient(145deg, rgba(124, 58, 237, 0.58), rgba(168, 85, 247, 0.18));
+    box-shadow: 0 0 28px rgba(168, 85, 247, 0.45), inset 0 1px rgba(255, 255, 255, 0.18);
 }
 
 .navbar__mobile-status {
@@ -168,7 +189,7 @@ img[src=""] {
     width: 100%;
     height: 2px;
     border-radius: 999px;
-    background: var(--text);
+    background: linear-gradient(90deg, #ffffff, #ddd6fe);
     transition: transform var(--ease), opacity var(--ease), background var(--ease);
 }
 
@@ -1418,6 +1439,10 @@ a.contact__info-link:hover {
 
     .navbar__toggle.is-open span:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .navbar__toggle:active {
+        transform: scale(0.94);
     }
 
     .navbar__menu {
