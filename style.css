@@ -145,6 +145,24 @@ img[src=""] {
     cursor: pointer;
 }
 
+.navbar__mobile-status {
+    display: none;
+    align-items: center;
+    gap: 7px;
+    color: #ddd6fe;
+    font-size: 0.74rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.navbar__mobile-status span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+}
+
 .navbar__toggle span {
     display: block;
     width: 100%;
@@ -1386,6 +1404,10 @@ a.contact__info-link:hover {
         margin-left: auto;
     }
 
+    .navbar__mobile-status {
+        display: inline-flex;
+    }
+
     .navbar__toggle.is-open span:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
     }
@@ -1718,6 +1740,10 @@ a.contact__info-link:hover {
     .main,
     .footer {
         width: min(100% - 24px, var(--max-width));
+    }
+
+    .navbar__mobile-status {
+        font-size: 0.68rem;
     }
 
     .hero,
