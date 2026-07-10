@@ -34,7 +34,7 @@ function abrirProjetos() {
 }
 
 function setupNavigation() {
-    const links = document.querySelectorAll(".navbar__link, .hero__actions .btn__link, .about-me-card__cta .btn__link");
+    const links = document.querySelectorAll(".navbar__link");
 
     links.forEach((link) => {
         const label = link.textContent.trim();

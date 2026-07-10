@@ -239,6 +239,7 @@ img[src=""] {
 .projects,
 .contact {
     padding: clamp(94px, 10vw, 152px) 0;
+    scroll-margin-top: 110px;
 }
 
 .hero {
@@ -1534,7 +1535,7 @@ a.contact__info-link:hover {
     }
 
     .hero__tech-stack {
-        top: 4px;
+        top: 20px;
         right: -4px;
         width: 166px;
     }
@@ -1671,7 +1672,7 @@ a.contact__info-link:hover {
     }
 
     .hero__tech-stack {
-        top: 2px;
+        top: 18px;
         right: 4px;
         width: 148px;
         gap: 8px;
