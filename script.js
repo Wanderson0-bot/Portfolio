@@ -45,7 +45,71 @@ function setupNavigation() {
         link.addEventListener("click", (event) => {
             event.preventDefault();
             scrollToSection(target);
+            closeMobileMenu();
         });
+    });
+}
+
+function closeMobileMenu() {
+    const toggle = document.querySelector(".navbar__toggle");
+    const menu = document.querySelector(".navbar__menu");
+
+    if (!toggle || !menu) {
+        return;
+    }
+
+    toggle.classList.remove("is-open");
+    menu.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Abrir menu de navegação");
+}
+
+function setupMobileMenu() {
+    const toggle = document.querySelector(".navbar__toggle");
+    const menu = document.querySelector(".navbar__menu");
+
+    if (!toggle || !menu) {
+        return;
+    }
+
+    toggle.addEventListener("click", () => {
+        const isOpen = menu.classList.toggle("is-open");
+
+        toggle.classList.toggle("is-open", isOpen);
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.setAttribute("aria-label", isOpen ? "Fechar menu de navegação" : "Abrir menu de navegação");
+    });
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 760) {
+            closeMobileMenu();
+        }
+    });
+
+    document.addEventListener("click", (event) => {
+        if (!menu.classList.contains("is-open") || event.target.closest(".navbar")) {
+            return;
+        }
+
+        closeMobileMenu();
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeMobileMenu();
+        }
+    });
+}
+
+function setupBackToTop() {
+    const button = document.querySelector(".footer__back-to-top");
+
+    if (!button) {
+        return;
+    }
+
+    button.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
     });
 }
 
@@ -247,6 +311,7 @@ function injectInteractionStyles() {
 
 document.addEventListener("DOMContentLoaded", () => {
     injectInteractionStyles();
+    setupMobileMenu();
     setupNavigation();
     setupActiveMenu();
     setupHeaderState();
@@ -255,4 +320,5 @@ document.addEventListener("DOMContentLoaded", () => {
     setupRevealAnimations();
     setupProjectCards();
     setupProjectDescriptions();
+    setupBackToTop();
 });

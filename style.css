@@ -134,6 +134,30 @@ img[src=""] {
     gap: clamp(12px, 2.1vw, 30px);
 }
 
+.navbar__toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border: 1px solid var(--line-strong);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+}
+
+.navbar__toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--text);
+    transition: transform var(--ease), opacity var(--ease), background var(--ease);
+}
+
+.navbar__toggle span + span {
+    margin-top: 5px;
+}
+
 .navbar__link {
     position: relative;
     color: var(--muted);
@@ -175,7 +199,7 @@ img[src=""] {
 .skills-section,
 .projects,
 .contact {
-    padding: clamp(82px, 9vw, 136px) 0;
+    padding: clamp(94px, 10vw, 152px) 0;
 }
 
 .hero {
@@ -288,7 +312,7 @@ img[src=""] {
     border: 1px solid rgba(168, 85, 247, 0.45);
     background: linear-gradient(135deg, var(--accent), var(--accent-hover));
     color: var(--text);
-    box-shadow: 0 14px 42px rgba(124, 58, 237, 0.34);
+    box-shadow: 0 14px 42px rgba(124, 58, 237, 0.48), 0 0 26px rgba(168, 85, 247, 0.28);
 }
 
 .btn--secondary,
@@ -302,7 +326,7 @@ img[src=""] {
 .projects__button:hover {
     transform: translateY(-3px);
     border-color: rgba(168, 85, 247, 0.7);
-    box-shadow: 0 18px 50px rgba(168, 85, 247, 0.28);
+    box-shadow: 0 20px 54px rgba(168, 85, 247, 0.45), 0 0 34px rgba(168, 85, 247, 0.48);
 }
 
 .btn--outline:hover,
@@ -793,7 +817,8 @@ img[src=""] {
     color: var(--muted);
     font-size: 0.84rem;
     font-weight: 700;
-    transition: transform var(--ease), border-color var(--ease), color var(--ease), background var(--ease);
+    box-shadow: inset 0 0 16px rgba(168, 85, 247, 0.04), 0 0 12px rgba(124, 58, 237, 0.08);
+    transition: transform var(--ease), border-color var(--ease), color var(--ease), background var(--ease), box-shadow var(--ease);
 }
 
 .technology-item__name {
@@ -823,6 +848,7 @@ img[src=""] {
     border-color: rgba(168, 85, 247, 0.44);
     background: rgba(124, 58, 237, 0.12);
     color: var(--text);
+    box-shadow: 0 0 24px rgba(168, 85, 247, 0.34), inset 0 0 18px rgba(168, 85, 247, 0.1);
 }
 
 .skill-progress {
@@ -1238,11 +1264,41 @@ a.contact__info-link:hover {
     margin: 0 auto;
     padding: 28px 0 38px;
     border-top: 1px solid var(--line);
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
 }
 
 .footer__copyright {
     font-size: 0.92rem;
+}
+
+.footer__back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 10px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: color var(--ease), border-color var(--ease), background var(--ease), transform var(--ease);
+}
+
+.footer__back-to-top span {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.footer__back-to-top:hover {
+    transform: translateY(-2px);
+    border-color: rgba(168, 85, 247, 0.28);
+    background: rgba(124, 58, 237, 0.1);
+    color: var(--text);
 }
 
 @keyframes float {
@@ -1320,13 +1376,75 @@ a.contact__info-link:hover {
         padding: 12px;
         gap: 14px;
         border-radius: 24px;
+        position: relative;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    .navbar__toggle {
+        display: block;
+        margin-left: auto;
+    }
+
+    .navbar__toggle.is-open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .navbar__toggle.is-open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .navbar__toggle.is-open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .navbar__menu {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        left: 0;
+        z-index: 5;
+        width: auto;
+        display: grid;
+        gap: 4px;
+        padding: 10px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: rgba(17, 18, 23, 0.96);
+        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.38), 0 0 28px rgba(124, 58, 237, 0.14);
+        backdrop-filter: blur(22px);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity var(--ease), transform var(--ease), visibility var(--ease);
+    }
+
+    .navbar__menu.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .navbar__link {
+        display: block;
+        padding: 11px 12px;
+        border-radius: 12px;
+    }
+
+    .navbar__link:hover,
+    .navbar__link.is-active {
+        background: rgba(124, 58, 237, 0.14);
+    }
+
+    .navbar__link::after {
+        display: none;
     }
 
     .navbar__cta {
-        min-height: 44px;
-        padding: 0 15px;
-        font-size: 0.82rem;
-        justify-content: center;
+        display: none;
     }
 
     .main,
@@ -1339,7 +1457,7 @@ a.contact__info-link:hover {
     .skills-section,
     .projects,
     .contact {
-        padding: 64px 0;
+        padding: 76px 0;
     }
 
     .hero__description br,
@@ -1446,6 +1564,12 @@ a.contact__info-link:hover {
     .project-card__title {
         min-height: 0;
     }
+
+    .footer {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-top: 24px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1462,21 +1586,6 @@ a.contact__info-link:hover {
         width: 42px;
         height: 42px;
         flex-basis: 42px;
-    }
-
-    .navbar__menu {
-        order: 2;
-        gap: 18px;
-        padding-bottom: 8px;
-    }
-
-    .navbar__link {
-        font-size: 0.86rem;
-        white-space: nowrap;
-    }
-
-    .navbar__cta {
-        order: 3;
     }
 
     .hero__title {
@@ -1616,7 +1725,7 @@ a.contact__info-link:hover {
     .skills-section,
     .projects,
     .contact {
-        padding: 52px 0;
+        padding: 64px 0;
     }
 
     .btn,

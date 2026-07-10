@@ -15,7 +15,11 @@
                 <img class="navbar__logo-image" src="img/my-logo.png" alt="Logo do Wanderson Silva">
             </div>
 
-            <ul class="navbar__menu">
+            <button class="navbar__toggle" type="button" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="navbar-menu">
+                <span></span><span></span><span></span>
+            </button>
+
+            <ul class="navbar__menu" id="navbar-menu">
                 <li class="navbar__item"><a class="navbar__link" href="#">Início</a></li>
                 <li class="navbar__item"><a class="navbar__link" href="#about-me">Sobre</a></li>
                 <li class="navbar__item"><a class="navbar__link" href="#">Habilidades</a></li>
@@ -539,6 +543,9 @@
         <p class="footer__copyright">
             &copy; 2026 Wanderson Silva. Todos os direitos reservados.
         </p>
+        <button class="footer__back-to-top" type="button" aria-label="Voltar ao topo">
+            <span aria-hidden="true">↑</span> Voltar ao topo
+        </button>
     </footer>
 
     <script src="script.js"></script>
